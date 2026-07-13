@@ -7,375 +7,275 @@
 <title>佐藤 ひなたの自己紹介</title>
 <style>
 /* =============================================================
-   カラー設定 {{COLOR_THEME}}
-   質問⑩「好きな色・雰囲気」に合わせて、ここの変数を変えるだけで
-   ページ全体の色が変わります（下のCSS本体はさわらなくてOK）。
+   カラーテーマ {{COLOR_THEME}}
+   質問⑩「好きな色・雰囲気」に合わせて、下の :root の値を変えるだけで
+   ページ全体の色が調和したまま変わります（CSS本体はさわらない）。
+   初期値＝レッド。ほかの色は下の早見表からコピーして置き換える。
+
+   ■ ブルー   --accent:#3b82c4; --accent-ink:#2f72b0; --accent-soft:#eaf3fb; --accent-line:#cfe3f4;
+   ■ グリーン  --accent:#3fae74; --accent-ink:#2f9663; --accent-soft:#e9f7ef; --accent-line:#cdead9;
+   ■ オレンジ  --accent:#f0863f; --accent-ink:#dd7025; --accent-soft:#fdf0e6; --accent-line:#f6dcc4;
+   ■ パープル  --accent:#8b6fd6; --accent-ink:#7458c0; --accent-soft:#f2eefb; --accent-line:#ddd2f2;
+   ■ ピンク    --accent:#e86aa0; --accent-ink:#d4548c; --accent-soft:#fdeef5; --accent-line:#f6d3e4;
+   上にない色は、同じ考え方（メイン色／濃いめ／ごく薄い地／淡い罫線）で調和する4色を選ぶ。
    ============================================================= */
 :root{
-  --accent:      #ff8a5c;  /* メインの色（飾り・タグ・タイムラインの点） */
-  --accent-dark: #d95f2f;  /* メインの濃いめの色（色つき文字に使う） */
-  --accent-soft: #fff1e9;  /* メインのごく薄い色（バッジやチップの背景） */
-  --bg:          #fffcf8;  /* ページ全体の背景色 */
-  --card:        #ffffff;  /* カードの背景色 */
-  --text:        #3a4150;  /* 基本の文字色 */
-  --text-soft:   #8b93a3;  /* 補足の文字色 */
-  --line:        #f0e5da;  /* 罫線の色 */
-  --radius:      18px;     /* 角の丸み */
+  --accent:       #e75069;   /* 差し色（バー・チップ枠・丸・番号・アイコン） */
+  --accent-ink:   #e34d66;   /* 文字に使う色 */
+  --accent-soft:  #fdeef1;   /* 淡い地（引用・メッセージ枠） */
+  --accent-line:  #f3d3da;   /* 淡い罫線 */
+  --bg:           #f4f4f6;   /* ページ外側の地 */
+  --sheet:        #ffffff;   /* 本体シートの白 */
+  --card:         #ffffff;   /* カード地 */
+  --ink:          #2f2f37;   /* 見出し・強い文字 */
+  --text:         #4a4e57;   /* 本文 */
+  --text-soft:    #8a8f99;   /* 補足・ふりがな */
+  --line:         #ececef;   /* 罫線・カード枠 */
+  --chip-line:    #d7dade;   /* 事実チップの枠 */
+  --radius:       16px;
+  --shadow:       0 10px 30px rgba(40,40,60,.06);
+  --shadow-card:  0 4px 16px rgba(231,80,105,.06);
 }
-
-/* ---- ベース ---- */
 *{ margin:0; padding:0; box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 body{
-  background:var(--bg);
-  color:var(--text);
+  background:var(--bg); color:var(--text);
   font-family:-apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
-  line-height:1.8;
-  -webkit-font-smoothing:antialiased;
+    "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Meiryo", sans-serif;
+  line-height:1.8; letter-spacing:.01em;
+  overflow-x:hidden; overflow-wrap:anywhere;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  padding:32px 16px;
 }
-.wrap{ max-width:720px; margin:0 auto; padding:0 22px; }
-section{ padding:34px 0; }
+.sheet{ max-width:940px; margin:0 auto; background:var(--sheet); border-radius:26px; box-shadow:var(--shadow); overflow:hidden; }
+.pad{ padding-inline:46px; }
+@media (max-width:640px){ .pad{ padding-inline:22px; } }
 
-/* ---- ヒーロー ---- */
-.hero{ padding:76px 0 36px; text-align:center; }
+/* ---- ヒーロー（2カラム） ---- */
+.hero{ display:flex; gap:40px; align-items:center; padding:52px 46px 34px; }
+.hero-photo{ flex:0 0 auto; }
 .avatar{
-  width:96px; height:96px; margin:0 auto 18px;
+  width:210px; height:210px; border-radius:50%; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
-  border-radius:50%; overflow:hidden;
-  background:linear-gradient(135deg, var(--accent), var(--accent-dark));
-  color:#fff; font-size:38px; font-weight:700;
-  box-shadow:0 10px 24px rgba(0,0,0,.10);
+  background:radial-gradient(circle at 50% 38%, #f0f1f4, #e7e9ee);
+  color:#c3c7cf; font-size:82px; font-weight:800;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.03);
 }
-.avatar img{
-  width:100%; height:100%;
-  object-fit:cover; object-position:center; display:block;
-}
-.furigana{
-  color:var(--text-soft); font-size:13px; font-weight:600;
-  letter-spacing:.18em;
-}
-.hero h1{
-  font-size:clamp(30px, 7vw, 42px);
-  font-weight:800; letter-spacing:.02em; line-height:1.35;
-}
-.hero-meta{
-  margin-top:14px;
-  display:flex; flex-wrap:wrap; gap:8px;
-  align-items:center; justify-content:center;
-}
-.role-chip{
-  display:inline-block;
-  padding:6px 18px; border-radius:999px;
-  background:var(--accent-soft); color:var(--accent-dark);
-  font-size:14px; font-weight:700; letter-spacing:.04em;
-}
-.location-chip{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:6px 16px; border-radius:999px;
-  background:var(--card); border:1px solid var(--line);
-  color:var(--text-soft); font-size:13.5px; font-weight:600;
-}
-.location-chip::before{
-  content:""; width:8px; height:8px; border-radius:50%;
-  background:var(--accent);
-}
-.tagline{
-  margin:16px auto 0; max-width:32em;
-  color:var(--text-soft); font-size:16px;
-}
+.avatar img{ width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+.hero-body{ flex:1 1 auto; min-width:0; }
+.eyebrow{ color:var(--accent-ink); font-size:12px; font-weight:800; letter-spacing:.22em; padding-bottom:8px; margin-bottom:14px; position:relative; display:inline-block; }
+.eyebrow::after{ content:""; position:absolute; left:0; bottom:0; width:34px; height:2px; background:var(--accent); border-radius:2px; }
+.hero-body h1{ font-size:clamp(32px,5vw,46px); font-weight:900; color:var(--ink); letter-spacing:.14em; line-height:1.2; }
+.furigana{ color:var(--text-soft); font-size:14px; font-weight:600; letter-spacing:.14em; margin-top:8px; }
+.chips{ display:flex; flex-wrap:wrap; gap:9px; margin:18px 0 16px; }
+.chip{ display:inline-flex; align-items:center; padding:6px 16px; border-radius:999px; font-size:13px; font-weight:700; white-space:nowrap; max-width:100%; }
+.chip.role{ color:var(--accent-ink); border:1.5px solid var(--accent); background:#fff; }
+.chip.fact{ color:var(--text); border:1.5px solid var(--chip-line); background:#fff; font-weight:600; }
+.tagline{ color:var(--text); font-size:15.5px; line-height:1.9; max-width:40em; }
 
-/* ---- SNS・発信ジャンル行（任意） ---- */
-.sns-row{ padding-bottom:10px; text-align:center; }
-.sns-genre{ color:var(--text-soft); font-size:14px; margin-bottom:12px; }
-.sns-links{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
-.sns-link{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:9px 20px; border-radius:999px;
-  background:var(--card); border:1px solid var(--line);
-  color:var(--accent-dark); font-size:14px; font-weight:700;
-  text-decoration:none;
-  box-shadow:0 3px 10px rgba(0,0,0,.03);
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-.sns-link:hover{ transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.08); }
-.sns-link::before{
-  content:""; width:8px; height:8px; border-radius:50%;
-  background:var(--accent);
-}
+.divider{ height:1px; background:var(--line); margin-inline:46px; }
+@media (max-width:640px){ .divider{ margin-inline:22px; } }
 
-/* ---- セクション見出し ---- */
-.sec-head{ margin-bottom:26px; }
-.sec-en{
-  display:block; color:var(--accent);
-  font-size:12px; font-weight:700; letter-spacing:.22em;
-}
-.sec-head h2{ font-size:24px; font-weight:800; margin-top:2px; }
+/* ---- セクション見出し（差し色バー） ---- */
+section{ padding-block:46px; }
+.sec-head{ display:flex; align-items:center; gap:12px; margin-bottom:28px; }
+.sec-head::before{ content:""; width:5px; height:22px; border-radius:3px; background:var(--accent); flex:0 0 auto; }
+.sec-head h2{ font-size:22px; font-weight:800; color:var(--ink); letter-spacing:.02em; }
 
-/* ---- 経歴タイムライン ---- */
-.timeline{ list-style:none; position:relative; padding-left:26px; }
-.timeline::before{
-  content:""; position:absolute; left:7px; top:6px; bottom:6px;
-  width:2px; background:var(--line); border-radius:2px;
-}
+/* ---- 経歴タイムライン（中抜き丸） ---- */
+.timeline{ list-style:none; position:relative; padding-left:34px; }
+.timeline::before{ content:""; position:absolute; left:9px; top:10px; bottom:10px; width:2px; background:var(--line); }
 .tl-item{ position:relative; padding-bottom:26px; }
 .tl-item:last-child{ padding-bottom:0; }
-.tl-dot{
-  position:absolute; left:-26px; top:8px;
-  width:16px; height:16px; border-radius:50%;
-  background:var(--accent); border:3px solid var(--bg);
-  box-shadow:0 0 0 2px var(--accent-soft);
-}
-.tl-time{
-  color:var(--accent-dark); font-size:13px; font-weight:700;
-  letter-spacing:.06em;
-}
-.tl-title{ font-size:17px; font-weight:700; margin-top:2px; }
-.tl-text{ color:var(--text-soft); font-size:14.5px; margin-top:4px; }
+.tl-dot{ position:absolute; left:-34px; top:6px; width:18px; height:18px; border-radius:50%; background:#fff; border:2.5px solid var(--accent); box-sizing:border-box; }
+.tl-time{ color:var(--accent-ink); font-size:12.5px; font-weight:800; letter-spacing:.04em; }
+.tl-title{ font-size:16.5px; font-weight:800; color:var(--ink); margin-top:3px; }
+.tl-text{ color:var(--text-soft); font-size:14px; margin-top:5px; line-height:1.8; }
 
-/* ---- 強み3カード ---- */
-.strengths{ display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
-.strength-card{
-  background:var(--card); border:1px solid var(--line);
-  border-radius:var(--radius); padding:26px 20px;
-  box-shadow:0 6px 18px rgba(0,0,0,.04);
-}
-.strength-num{
-  display:flex; align-items:center; justify-content:center;
-  width:36px; height:36px; margin-bottom:14px;
-  border-radius:12px; background:var(--accent-soft);
-  color:var(--accent-dark); font-weight:800; font-size:16px;
-}
-.strength-card h3{ font-size:16.5px; font-weight:800; margin-bottom:6px; }
-.strength-card p{ color:var(--text-soft); font-size:14px; line-height:1.75; }
+/* ---- 強みカード ---- */
+.strengths{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media (max-width:640px){ .strengths{ grid-template-columns:1fr; } }
+.strength-card{ background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px; box-shadow:var(--shadow-card); }
+.strength-top{ display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.strength-num{ flex:0 0 auto; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--accent); color:#fff; font-weight:800; font-size:14px; }
+.strength-card h3{ font-size:16px; font-weight:800; color:var(--ink); line-height:1.4; }
+.strength-card p{ color:var(--text-soft); font-size:13.5px; line-height:1.8; }
 
-/* ---- 趣味タグ ---- */
-.hobbies{ display:flex; flex-wrap:wrap; gap:10px; }
-.hobby-tag{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:9px 18px; border-radius:999px;
-  background:var(--card); border:1px solid var(--line);
-  font-size:14.5px; font-weight:600;
-  box-shadow:0 3px 10px rgba(0,0,0,.03);
-}
-.hobby-tag::before{
-  content:""; width:8px; height:8px; border-radius:50%;
-  background:var(--accent);
-}
+/* ---- すきなこと（アイコン付きタグ） ---- */
+.likes{ display:flex; flex-wrap:wrap; gap:11px; }
+.like-tag{ display:inline-flex; align-items:center; gap:9px; padding:9px 18px; border-radius:999px; background:#fff; border:1px solid var(--chip-line); font-size:14px; font-weight:600; color:var(--ink); }
+.like-tag .ico{ width:16px; height:16px; stroke:var(--accent-ink); fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex:0 0 auto; }
 
 /* ---- 大事にしている言葉 ---- */
-.motto-box{
-  position:relative; text-align:center;
-  background:var(--card); border:1px solid var(--line);
-  border-radius:var(--radius); padding:52px 28px 36px;
-  box-shadow:0 6px 18px rgba(0,0,0,.04);
-}
-.motto-box::before{
-  content:"\201C";
-  position:absolute; top:6px; left:50%; transform:translateX(-50%);
-  color:var(--accent); font-size:72px; font-weight:800;
-  font-family:Georgia, "Times New Roman", serif; line-height:1;
-  opacity:.85;
-}
-.motto-text{ font-size:clamp(19px, 4.5vw, 24px); font-weight:800; line-height:1.6; }
-.motto-note{ margin-top:14px; color:var(--text-soft); font-size:14px; }
+.motto-box{ background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:var(--radius); padding:40px 34px; }
+.motto-text{ font-size:clamp(19px,3.4vw,23px); font-weight:800; color:var(--ink); text-align:center; line-height:1.55; }
+.motto-note{ margin-top:10px; color:var(--text-soft); font-size:13.5px; text-align:center; }
 
 /* ---- さいごにひとこと ---- */
-.hitokoto-box{
-  background:linear-gradient(135deg, var(--accent-soft), var(--card));
-  border:1px solid var(--line);
-  border-radius:var(--radius); padding:30px 28px;
-  text-align:center;
-  box-shadow:0 6px 18px rgba(0,0,0,.04);
-}
-.hitokoto-text{ font-size:16.5px; font-weight:600; line-height:2; }
+.hitokoto-box{ display:flex; align-items:center; gap:18px; background:var(--accent-soft); border:1px solid var(--accent-line); border-radius:var(--radius); padding:26px 30px; }
+.hitokoto-icon{ flex:0 0 auto; width:46px; height:46px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; }
+.hitokoto-icon .ico{ width:22px; height:22px; stroke:#fff; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.hitokoto-text{ font-size:15px; font-weight:600; line-height:1.9; color:var(--ink); }
 
 /* ---- フッター ---- */
-footer{
-  margin-top:30px; padding:44px 0 48px;
-  border-top:1px solid var(--line);
-  text-align:center; color:var(--text-soft); font-size:13px;
-}
-
-/* ---- ふわっと表示（JSなしでも表示される） ---- */
-.reveal{ opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease; }
-.reveal.is-visible{ opacity:1 !important; transform:none !important; }
-@media (prefers-reduced-motion: reduce){
-  .reveal{ opacity:1; transform:none; transition:none; }
-}
+footer{ background:var(--bg); text-align:center; color:var(--text-soft); font-size:12.5px; padding:22px; }
 
 /* ---- スマホ対応 ---- */
-@media (max-width: 640px){
-  .hero{ padding:56px 0 28px; }
-  section{ padding:28px 0; }
-  .strengths{ grid-template-columns:1fr; }
+@media (max-width:640px){
+  body{ padding:16px 10px; }
+  .hero{ flex-direction:column; text-align:center; gap:22px; padding:40px 22px 26px; }
+  .avatar{ width:150px; height:150px; font-size:60px; }
+  .chips{ justify-content:center; }
+  .tagline{ margin:0 auto; }
+  .hitokoto-box{ flex-direction:column; text-align:center; gap:14px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ================= ヒーロー（アバター＋名前＋ふりがな＋役割＋拠点＋一言） ================= -->
-<header class="hero wrap">
-  <!-- ▼差し替え {{AVATAR}}: 質問⑪のプロフィール画像で中身が変わる
-       ・画像あり → 中身を <img src="./ファイル名" alt="（名前）のプロフィール写真"> に置き換える
-         （src は index.html と同じ self-intro フォルダに入れたファイル名だけ。外部URLの画像は使わない）
-       ・画像なし → 名前の頭文字など1〜2文字を入れる（下のサンプルと同じ形のまま） -->
-  <div class="avatar"><!--{{AVATAR}}-->ひ<!--/{{AVATAR}}--></div>
-  <!-- ▼差し替え {{FURIGANA}}: 質問①のふりがな（ひらがな。不要なら<p>ごと削除） -->
-  <p class="furigana"><!--{{FURIGANA}}-->さとう ひなた<!--/{{FURIGANA}}--></p>
-  <!-- ▼差し替え {{NAME}}: 質問①の名前 -->
-  <h1><!--{{NAME}}-->佐藤 ひなた<!--/{{NAME}}--></h1>
-  <div class="hero-meta">
-    <!-- ▼差し替え {{ROLE}}: 質問②の所属部署・役割 -->
-    <span class="role-chip"><!--{{ROLE}}-->カスタマーサクセス／受講生サポート担当<!--/{{ROLE}}--></span>
-    <!-- ▼差し替え {{LOCATION}}: 質問③の拠点（出身地・現在地） -->
-    <span class="location-chip"><!--{{LOCATION}}-->沖縄県出身・那覇市在住<!--/{{LOCATION}}--></span>
-  </div>
-  <!-- ▼差し替え {{TAGLINE}}: 回答全体から本人らしい一言を作って入れる -->
-  <p class="tagline"><!--{{TAGLINE}}-->「困った」を「よかった」に変えるのがしごとです。つまずきに気づく速さなら、だれにも負けません。<!--/{{TAGLINE}}--></p>
-</header>
+<!-- ============================================================
+     アイコン置き場（消さない）。すきなことのタグは、下の <use href="#ico-xxx">
+     の xxx を、その趣味に合うアイコン名に変えるだけで絵柄が変わる。
+     使えるアイコン名: music(音楽/歌/カラオケ) camera(写真) book(読書/勉強)
+     coffee(カフェ/お茶) travel(旅行/おでかけ) fitness(筋トレ/ラン/ジム)
+     game(ゲーム) film(映画/ドラマ/アニメ) food(料理/グルメ/食べ歩き)
+     pet(犬/猫/動物) sport(スポーツ全般) art(絵/デザイン/ものづくり)
+     nature(アウトドア/キャンプ/登山/釣り) heart(推し/好きなもの) star(その他=初期値)
+     ※どれにも当てはまらない趣味は star を使う（必ず何か付く＝崩れない）
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ico-music" viewBox="0 0 24 24"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+  <symbol id="ico-camera" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.4"/></symbol>
+  <symbol id="ico-book" viewBox="0 0 24 24"><path d="M6 3h11a1 1 0 0 1 1 1v14H7a2 2 0 0 0-2 2V5a2 2 0 0 1 2-2z"/><path d="M9 7h6M9 11h5"/></symbol>
+  <symbol id="ico-coffee" viewBox="0 0 24 24"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 9h2a2 2 0 0 1 0 6h-2"/><path d="M7 3v2M11 3v2"/></symbol>
+  <symbol id="ico-travel" viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="ico-fitness" viewBox="0 0 24 24"><path d="M6 9v6M18 9v6M4 10v4M20 10v4M6 12h12"/></symbol>
+  <symbol id="ico-game" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M8 11v3M6.5 12.5h3"/><circle cx="15.5" cy="12" r=".9"/><circle cx="17.5" cy="14" r=".9"/></symbol>
+  <symbol id="ico-film" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 8l3-4h3l-2 4M11 8l3-4h3l-2 4"/></symbol>
+  <symbol id="ico-food" viewBox="0 0 24 24"><path d="M6 3v7a2 2 0 0 0 2 2v9M8 3v6M10 3v6"/><path d="M16 3c-1.6 0-2.6 2-2.6 5s1 4 2.6 4v9"/></symbol>
+  <symbol id="ico-pet" viewBox="0 0 24 24"><circle cx="8" cy="9" r="1.5"/><circle cx="12" cy="7.5" r="1.5"/><circle cx="16" cy="9" r="1.5"/><path d="M12 12c-2.5 0-4.5 2-4.5 4.2 0 1.6 1.4 2.3 2.6 1.9 1.2-.4 2.6-.4 3.8 0 1.2.4 2.6-.3 2.6-1.9C16.5 14 14.5 12 12 12z"/></symbol>
+  <symbol id="ico-sport" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7l3.2 2.3-1.2 3.7h-4l-1.2-3.7z"/></symbol>
+  <symbol id="ico-art" viewBox="0 0 24 24"><path d="M12.2 3.4a9 9 0 1 0 0 18c1.4 0 1.9-1 1.4-1.9-.4-.9 0-1.9 1.4-1.9h1a3.5 3.5 0 0 0 3.5-3.5c0-4.4-3.6-7.9-7.9-7.9z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="8" r="1"/><circle cx="16" cy="11" r="1"/></symbol>
+  <symbol id="ico-nature" viewBox="0 0 24 24"><path d="M3 20l6-11 4 6 2-3 6 8z"/></symbol>
+  <symbol id="ico-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 7 .5c0 5-7 11-7 11z"/></symbol>
+  <symbol id="ico-star" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></symbol>
+</svg>
 
-<!-- ================= SNS・発信ジャンル行（任意） ================= -->
-<!-- ▼差し替え {{SNS_LINKS_START}}: 質問⑦のSNSリンク・発信ジャンル
-     ・回答があれば、ジャンルの一言（{{GENRE}}）を差し替え、下の<a>をリンク先に合わせて増減する
-       （リンク先は本人が答えたSNSのURLをそのまま使う。表示名は「サービス名 @アカウント名」が目安）
-     ・スキップされたら、この START から下の END のコメントまで丸ごと削除する（{{GENRE}}も一緒に消える） -->
-<div class="wrap sns-row reveal">
-  <!-- ▼差し替え {{GENRE}}: 発信ジャンルの一言（ジャンルの回答がなければこの<p>ごと削除） -->
-  <p class="sns-genre"><!--{{GENRE}}-->Instagramで「沖縄カフェめぐり」を毎週発信しています<!--/{{GENRE}}--></p>
-  <div class="sns-links">
-    <a class="sns-link" href="https://www.instagram.com/hinata.cafe" target="_blank" rel="noopener">Instagram @hinata.cafe</a>
-    <a class="sns-link" href="https://x.com/hinata_cafe" target="_blank" rel="noopener">X @hinata_cafe</a>
-  </div>
-</div>
-<!-- ▲{{SNS_LINKS_END}} -->
+<main class="sheet">
 
-<!-- ================= 略歴タイムライン ================= -->
-<section class="wrap reveal">
-  <div class="sec-head">
-    <span class="sec-en">STORY</span>
-    <h2>これまでの歩み</h2>
-  </div>
-  <!-- ▼差し替え {{TIMELINE_START}}: 質問④の略歴に合わせて、下の<li>を増減する（3〜6個） -->
-  <ul class="timeline">
-    <li class="tl-item">
-      <span class="tl-dot"></span>
-      <p class="tl-time">2019年</p>
-      <h3 class="tl-title">アパレル販売員としてキャリアスタート</h3>
-      <p class="tl-text">接客の毎日で「人の話をよく聞く力」を鍛えました。</p>
-    </li>
-    <li class="tl-item">
-      <span class="tl-dot"></span>
-      <p class="tl-time">2022年</p>
-      <h3 class="tl-title">Levelaに入社、CSチームへ</h3>
-      <p class="tl-text">受講生サポートを担当。年間1,000件以上の相談に向き合いました。</p>
-    </li>
-    <li class="tl-item">
-      <span class="tl-dot"></span>
-      <p class="tl-time">2025年</p>
-      <h3 class="tl-title">チームリーダーに</h3>
-      <p class="tl-text">新人メンバーの育成と、サポート品質の仕組みづくりに挑戦中です。</p>
-    </li>
-  </ul>
-  <!-- ▲{{TIMELINE_END}} -->
-</section>
-
-<!-- ================= 強み3カード ================= -->
-<section class="wrap reveal">
-  <div class="sec-head">
-    <span class="sec-en">STRENGTHS</span>
-    <h2>わたしの強み3つ</h2>
-  </div>
-  <!-- ▼差し替え {{STRENGTH_CARDS_START}}: 質問⑤の強み3つを下の3枚のカードに入れる -->
-  <div class="strengths">
-    <div class="strength-card">
-      <div class="strength-num">1</div>
-      <h3>聞き上手</h3>
-      <p>相手が話しやすい空気をつくるのが得意です。まず最後まで聞きます。</p>
+  <!-- ================= ヒーロー ================= -->
+  <header class="hero">
+    <div class="hero-photo">
+      <!-- ▼差し替え {{AVATAR}}: 質問⑪のプロフィール画像で中身が変わる
+           ・画像あり → 中身を <img src="./ファイル名" alt="（名前）のプロフィール写真"> に置き換える
+             （src は index.html と同じ self-intro フォルダに入れたファイル名だけ。外部URLの画像は使わない）
+           ・画像なし → 名前の頭文字1〜2文字を入れる（下のサンプルと同じ形のまま） -->
+      <div class="avatar"><!--{{AVATAR}}-->ひ<!--/{{AVATAR}}--></div>
     </div>
-    <div class="strength-card">
-      <div class="strength-num">2</div>
-      <h3>レスポンスの速さ</h3>
-      <p>「あとでやる」をためません。すぐ返す・すぐ動くがモットーです。</p>
+    <div class="hero-body">
+      <span class="eyebrow">PROFILE</span>
+      <!-- ▼差し替え {{NAME}}: 質問①の名前 -->
+      <h1><!--{{NAME}}-->佐藤 ひなた<!--/{{NAME}}--></h1>
+      <!-- ▼差し替え {{FURIGANA}}: 質問①のふりがな（不要ならこの<p>ごと削除） -->
+      <p class="furigana"><!--{{FURIGANA}}-->さとう ひなた<!--/{{FURIGANA}}--></p>
+      <div class="chips">
+        <!-- ▼差し替え {{ROLE_CHIPS}}: 質問②の所属・役割。「／」「・」で区切って赤枠チップを増減 -->
+        <span class="chip role">カスタマーサクセス</span>
+        <span class="chip role">受講生サポート担当</span>
+        <!-- ▲{{ROLE_CHIPS_END}} -->
+        <!-- ▼差し替え {{FACT_CHIPS}}: 質問③の拠点などの事実をグレー枠チップに（出身地/在住/勤務地など。無ければ削除） -->
+        <span class="chip fact">沖縄県出身</span>
+        <span class="chip fact">那覇市在住</span>
+        <!-- ▲{{FACT_CHIPS_END}} -->
+      </div>
+      <!-- ▼差し替え {{TAGLINE}}: 回答全体から本人らしい一言を作って入れる -->
+      <p class="tagline"><!--{{TAGLINE}}-->「困った」を「よかった」に変えるのがしごとです。つまずきに気づく速さなら、だれにも負けません。<!--/{{TAGLINE}}--></p>
     </div>
-    <div class="strength-card">
-      <div class="strength-num">3</div>
-      <h3>コツコツ改善</h3>
-      <p>小さな工夫を積み重ねて、チームみんなが使える仕組みに育てます。</p>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- ================= これまでの歩み ================= -->
+  <section class="pad">
+    <div class="sec-head"><h2>これまでの歩み</h2></div>
+    <!-- ▼差し替え {{TIMELINE_START}}: 質問④の略歴に合わせて、下の<li>を増減する（3〜6個） -->
+    <ul class="timeline">
+      <li class="tl-item"><span class="tl-dot"></span>
+        <p class="tl-time">2019年</p><h3 class="tl-title">アパレル販売員としてキャリアスタート</h3>
+        <p class="tl-text">接客の毎日で「人の話をよく聞く力」を鍛えました。</p></li>
+      <li class="tl-item"><span class="tl-dot"></span>
+        <p class="tl-time">2022年</p><h3 class="tl-title">Levelaに入社、CSチームへ</h3>
+        <p class="tl-text">受講生サポートを担当。年間1,000件以上の相談に向き合いました。</p></li>
+      <li class="tl-item"><span class="tl-dot"></span>
+        <p class="tl-time">2025年</p><h3 class="tl-title">チームリーダーに</h3>
+        <p class="tl-text">新人メンバーの育成と、サポート品質の仕組みづくりに挑戦中です。</p></li>
+    </ul>
+    <!-- ▲{{TIMELINE_END}} -->
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ================= 強み3つ ================= -->
+  <section class="pad">
+    <div class="sec-head"><h2>わたしの強み3つ</h2></div>
+    <!-- ▼差し替え {{STRENGTH_CARDS_START}}: 質問⑤の強み3つを下の3枚のカードに入れる -->
+    <div class="strengths">
+      <div class="strength-card">
+        <div class="strength-top"><span class="strength-num">1</span><h3>聞き上手</h3></div>
+        <p>相手が話しやすい空気をつくるのが得意です。まず最後まで聞きます。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-top"><span class="strength-num">2</span><h3>レスポンスの速さ</h3></div>
+        <p>「あとでやる」をためません。すぐ返す・すぐ動くがモットーです。</p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-top"><span class="strength-num">3</span><h3>コツコツ改善</h3></div>
+        <p>小さな工夫を積み重ねて、チームみんなが使える仕組みに育てます。</p>
+      </div>
     </div>
-  </div>
-  <!-- ▲{{STRENGTH_CARDS_END}} -->
-</section>
+    <!-- ▲{{STRENGTH_CARDS_END}} -->
+  </section>
 
-<!-- ================= 趣味タグ ================= -->
-<section class="wrap reveal">
-  <div class="sec-head">
-    <span class="sec-en">LIKES</span>
-    <h2>すきなこと</h2>
-  </div>
-  <!-- ▼差し替え {{HOBBY_TAGS_START}}: 質問⑥の趣味・好きなことに合わせて、下の<span>を増減する -->
-  <div class="hobbies">
-    <span class="hobby-tag">カフェ巡り</span>
-    <span class="hobby-tag">韓国ドラマ</span>
-    <span class="hobby-tag">ヨガ</span>
-    <span class="hobby-tag">御朱印集め</span>
-    <span class="hobby-tag">犬とさんぽ</span>
-  </div>
-  <!-- ▲{{HOBBY_TAGS_END}} -->
-</section>
+  <div class="divider"></div>
 
-<!-- ================= 大事にしている言葉 ================= -->
-<section class="wrap reveal">
-  <div class="sec-head">
-    <span class="sec-en">MOTTO</span>
-    <h2>大事にしている言葉</h2>
-  </div>
-  <div class="motto-box">
-    <!-- ▼差し替え {{MOTTO}}: 質問⑧の座右の銘・マイルール -->
-    <p class="motto-text"><!--{{MOTTO}}-->迷ったら、明るいほうへ。<!--/{{MOTTO}}--></p>
-    <!-- ▼差し替え {{MOTTO_NOTE}}: その言葉についての短い補足（なければこの<p>ごと削除） -->
-    <p class="motto-note"><!--{{MOTTO_NOTE}}-->決められないときは、聞いて楽しいほう・見て明るいほうを選ぶようにしています。<!--/{{MOTTO_NOTE}}--></p>
-  </div>
-</section>
+  <!-- ================= すきなこと ================= -->
+  <section class="pad">
+    <div class="sec-head"><h2>すきなこと</h2></div>
+    <!-- ▼差し替え {{LIKE_TAGS_START}}: 質問⑥の趣味を1つ1タグに。use href の #ico-xxx を趣味に合うアイコン名に変える（上のアイコン一覧参照。合うものが無ければ #ico-star） -->
+    <div class="likes">
+      <span class="like-tag"><svg class="ico"><use href="#ico-coffee"/></svg>カフェ巡り</span>
+      <span class="like-tag"><svg class="ico"><use href="#ico-film"/></svg>韓国ドラマ</span>
+      <span class="like-tag"><svg class="ico"><use href="#ico-fitness"/></svg>ヨガ</span>
+      <span class="like-tag"><svg class="ico"><use href="#ico-pet"/></svg>犬とさんぽ</span>
+    </div>
+    <!-- ▲{{LIKE_TAGS_END}} -->
+  </section>
 
-<!-- ================= さいごにひとこと ================= -->
-<section class="wrap reveal">
-  <div class="sec-head">
-    <span class="sec-en">MESSAGE</span>
-    <h2>さいごに、ひとこと</h2>
-  </div>
-  <div class="hitokoto-box">
-    <!-- ▼差し替え {{HITOKOTO}}: 質問⑨の最後にひとこと -->
-    <p class="hitokoto-text"><!--{{HITOKOTO}}-->ここまで読んでくれてありがとうございます。社内で見かけたら、気軽に話しかけてください！<!--/{{HITOKOTO}}--></p>
-  </div>
-</section>
+  <div class="divider"></div>
 
-<!-- ================= フッター ================= -->
-<footer>
+  <!-- ================= 大事にしている言葉 ================= -->
+  <section class="pad">
+    <div class="sec-head"><h2>大事にしている言葉</h2></div>
+    <div class="motto-box">
+      <!-- ▼差し替え {{MOTTO}}: 質問⑧の座右の銘・マイルール -->
+      <p class="motto-text"><!--{{MOTTO}}-->迷ったら、明るいほうへ。<!--/{{MOTTO}}--></p>
+      <!-- ▼差し替え {{MOTTO_NOTE}}: その言葉の短い補足（なければこの<p>ごと削除） -->
+      <p class="motto-note"><!--{{MOTTO_NOTE}}-->決められないときは、聞いて楽しいほう・見て明るいほうを選ぶようにしています。<!--/{{MOTTO_NOTE}}--></p>
+    </div>
+  </section>
+
+  <!-- ================= さいごにひとこと ================= -->
+  <section class="pad">
+    <div class="sec-head"><h2>さいごに、ひとこと</h2></div>
+    <div class="hitokoto-box">
+      <div class="hitokoto-icon"><svg class="ico"><use href="#ico-heart"/></svg></div>
+      <!-- ▼差し替え {{HITOKOTO}}: 質問⑨の最後にひとこと -->
+      <p class="hitokoto-text"><!--{{HITOKOTO}}-->ここまで読んでくれてありがとうございます。社内で見かけたら、気軽に話しかけてください！<!--/{{HITOKOTO}}--></p>
+    </div>
+  </section>
+
   <!-- ▼差し替え {{FOOTER_NAME}}: 質問①の名前 -->
-  <p class="wrap"><!--{{FOOTER_NAME}}-->佐藤 ひなた<!--/{{FOOTER_NAME}}--> — AIといっしょにつくった自己紹介ページ</p>
-</footer>
-
-<noscript><style>.reveal{ opacity:1; transform:none; }</style></noscript>
-<script>
-// スクロールに合わせてセクションをふわっと表示する（動かなくても表示に支障なし）
-(function(){
-  var targets = document.querySelectorAll('.reveal');
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if ('IntersectionObserver' in window && !reduce) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    targets.forEach(function(t){ io.observe(t); });
-  } else {
-    targets.forEach(function(t){ t.classList.add('is-visible'); });
-  }
-})();
-</script>
+  <footer><!--{{FOOTER_NAME}}-->佐藤 ひなた<!--/{{FOOTER_NAME}}--> — AIといっしょにつくった自己紹介ページ</footer>
+</main>
 </body>
 </html>
